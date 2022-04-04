@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="shortcut icon" href="/images/coffee_mug_icon.png" type="image/png">
-  <title>Hug With Mug Co.</title>
+  <title>Game Planet</title>
   <link href="styles/bootstrap.min.css" rel="stylesheet">
   <link href="styles/backend.css" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet">
