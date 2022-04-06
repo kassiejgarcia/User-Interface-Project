@@ -1,6 +1,6 @@
 <?php
 
-$db = mysqli_connect("localhost","root","UTSA2022se!","ecom_store");
+$db = mysqli_connect("localhost","root","UTSA2022se!","ecom_tester");
 
 /// IP address code starts /////
 function getRealUserIp(){
@@ -79,7 +79,6 @@ echo "$" . $total;
 
 // getPro function Starts //
 
-/* get the products for the homepage display */
 function getPro(){
 
 global $db;
@@ -100,7 +99,6 @@ $pro_img1 = $row_products['product_img1'];
 
 $pro_label = $row_products['product_label'];
 
-/******** manufacture functionality 
 $manufacturer_id = $row_products['manufacturer_id'];
 
 $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
@@ -111,10 +109,9 @@ $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
 $manufacturer_name = $row_manufacturer['manufacturer_title'];
 
- */
-$pro_psp_price = $row_products['product_psp_price']; //sale price
+$pro_psp_price = $row_products['product_psp_price'];
 
-$pro_url = $row_products['product_url']; //GET id to access it
+$pro_url = $row_products['product_url'];
 
 if($pro_label == "Sale" or $pro_label == "sale"){
 
@@ -131,8 +128,9 @@ $product_price = "$$pro_price";
 
 }
 
-if($pro_label == "NULL" and $pro_label != "Sale"){
- 
+
+if($pro_label == "NULL" and $pro_label != "Sale" and $pro_label != "sale"){
+
 
 }
 else{
@@ -150,37 +148,39 @@ $product_label = "
 ";
 
 }
+
+
 echo "
 
 <div class='col-md-4 col-sm-6 single' >
 
 <div class='product' >
 
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >
+<a href='details.php?pro_id=$pro_url' >
 
-<img src='admin_area/product_images/$pro_img1' class='product-display' >
+<img src='admin_area/product_images/$pro_img1' class='img-responsive' >
 
 </a>
 
 <div class='text' >
 
-<!-- **************<center>
+<center>
 
 <p class='btn btn-warning'> $manufacturer_name </p>
 
-</center> -->
+</center>
 
 <hr>
 
-<h3><a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >$pro_title</a></h3>
+<h3><a href='details.php?pro_id=$pro_url' >$pro_title</a></h3>
 
 <p class='price' > $product_price $product_psp_price </p>
 
 <p class='buttons' >
 
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-default' >View Details</a>
+<a href='details.php?pro_id=$pro_url' class='btn btn-default' >View Details</a>
 
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-danger'>
+<a href='details.php?pro_id=$pro_url' class='btn btn-danger'>
 
 <i class='fa fa-shopping-cart'></i> Add To Cart
 
@@ -189,16 +189,15 @@ echo "
 
 </p>
 
-</div>"; //only show the product label if there is one
+</div>";
+//only show the product label if there is one
 if($pro_label == "Sale" or $pro_label == "sale"){
 	echo"$product_label";
 
 }
 echo "
 </div>
-
 </div>
-
 ";
 
 }
@@ -306,7 +305,6 @@ $pro_img1 = $row_products['product_img1'];
 
 $pro_label = $row_products['product_label'];
 
-/*
 $manufacturer_id = $row_products['manufacturer_id'];
 
 $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
@@ -317,7 +315,6 @@ $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
 $manufacturer_name = $row_manufacturer['manufacturer_title'];
 
- */
 $pro_psp_price = $row_products['product_psp_price'];
 
 $pro_url = $row_products['product_url'];
@@ -361,33 +358,36 @@ $product_label = "
 
 
 echo "
-<div class='col-md-4 col-sm-6 center-responsive' >
-<div class = 'product'>
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >
 
-<img src='admin_area/product_images/$pro_img1' class='product-display' >
+<div class='col-md-4 col-sm-6 center-responsive' style='height:700px;' >
+
+<div class='product' >
+
+<a href='details.php?pro_id=$pro_url' >
+
+<img src='admin_area/product_images/$pro_img1' class='img-responsive' >
 
 </a>
 
 <div class='text' >
-<!-- *************************8
+
 <center>
 
 <p class='btn btn-warning'> $manufacturer_name </p>
 
 </center>
--->
+
 <hr>
 
-<h3><a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >$pro_title</a></h3>
+<h3><a href='details.php?pro_id=$pro_url' >$pro_title</a></h3>
 
 <p class='price' > $product_price $product_psp_price </p>
 
 <p class='buttons' >
 
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-default' >View details</a>
+<a href='details.php?pro_id=$pro_url' class='btn btn-default' >View details</a>
 
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-danger'>
+<a href='details.php?pro_id=$pro_url' class='btn btn-danger'>
 
 <i class='fa fa-shopping-cart' data-price=$pro_price></i> Add To Cart
 
@@ -396,18 +396,18 @@ echo "
 
 </p>
 
-</div>"; // if the item is not for sale, then we should not show the sale label
+</div>";
 if($pro_label == "Sale"){
 echo "$product_label";
 }
 echo"
 </div>
-
 </div>
-
 ";
 
 }
+
+
 /// getProducts function Code Ends ///
 
 
@@ -529,4 +529,3 @@ echo "' >".'Last Page'."</a></li>";
 
 
 ?>
-

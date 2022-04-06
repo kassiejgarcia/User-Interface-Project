@@ -495,7 +495,7 @@ img {
 }
 
 .page-header__bottomline .main-nav .categories__link:hover {
-  color: #6e966e
+  color: #785976;
 }
 
 .page-header__bottomline .main-nav .categories__link i {
@@ -506,7 +506,7 @@ img {
 }
 
 .page-header__bottomline .main-nav .categories__link--active {
-  color: #6e966e
+  color: #641f60
 }
 
 .page-header .dropdown {
@@ -859,7 +859,7 @@ img {
   text-align: center;
   /*text-transform: uppercase;*/
   color: #ededed;
-  background: #666 url("../../images/shop_header.jpg") no-repeat;
+  background: #3a3a3a url("../images/shop-header.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
   background-blend-mode: lighten;
@@ -1019,3 +1019,5 @@ img {
     opacity: 1;
   }
 }
+
+

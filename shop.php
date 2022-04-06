@@ -8,18 +8,19 @@ include("functions/functions.php");
 include("includes/main.php");
 
 ?>
-<!-- display the shop all products header -->
- <!-- MAIN -->
-
+  <!-- MAIN -->
   <main>
+    <!-- HERO -->
     <div class="nero">
       <div class="nero__heading">
-       shop
+        Shop All Games
       </div>
       <p class="nero__text">
       </p>
     </div>
   </main>
+
+
 <div id="content" ><!-- content Starts -->
 <div class="container" ><!-- container Starts -->
 
@@ -32,14 +33,13 @@ include("includes/main.php");
 <div class="col-md-3"><!-- col-md-3 Starts -->
 <!-- include the sorting sidebar functionality -->
 <?php include("includes/sidebar.php"); ?>
+
 </div><!-- col-md-3 Ends -->
 
-<div class="col-md-9" ><!-- col-md-9 Starts -->
+<div class="col-md-9"><!-- col-md-9 Starts -->
 
 
-<?php
-	getProducts();
-?>
+<?php getProducts(); ?>
 
 </div><!-- row Ends -->
 

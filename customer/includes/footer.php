@@ -44,7 +44,7 @@
 	    </div>
 	    <div class="email">
 	      Email:
-	      <a class="email__addr">kassie.garcia@my.utsa.edu</a>
+	      <a class="email__addr">game.planet@my.utsa.edu</a>
 	    </div>
 	  </div>
 

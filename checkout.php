@@ -9,17 +9,7 @@ include("includes/main.php");
 
 ?>
 
-
-  <!-- MAIN -->
-  <main>
-    <!-- HERO -->
-<!--   *************8 <div class="nero">
-      <div class="nero__heading">
-        <span class="nero__bold">Checkout</span>
-      </div>
-      <p class="nero__text">
-      </p>
-    </div> -->
+<main>
   </main>
 
 

@@ -70,7 +70,7 @@ else
 
 	<div class="logo">
 	  <a class="logo__link" href="../../index.php">
-	    <img class="logo__img" src="../../images/main_page_logo.png" alt="Hug With Mug Coffee Company" width="450" height="23">
+	    <img class="logo__img" src="../../images/game_logo.png" alt="Game Planet" width="450" height="23">
 	  </a>
 	</div>
 
@@ -78,22 +78,22 @@ else
 	  <ul class="categories">
 
 	    <li class="categories__item">
-	      <a class="categories__link" href="shop.php?page=1&cat[]=1&"> <!-- LINK THE COFFEE.PHP page here to display it -->
-		Coffee
+	      <a class="categories__link" href="../../shop.php?page=1&man[]=9&p_cat[]=15&"> <!-- LINK THE nintendo page here to display it -->
+		Nintendo
 
 	      </a>
 	      </li>
 
 	    <li class="categories__item">
-	      <a class="categories__link" href="shop.php?page=1&cat[]=2&"> <!-- LINK THE TEAS.PHP page here to display it -->
-		Tea
+	      <a class="categories__link" href="../../shop.php?page=1&man[]=10&man[]=14&"> <!-- LINK THE playstation page here to display it -->
+		PlayStation
 
 	      </a>
 	    </li>
 
 	    <li class="categories__item">
-	      <a class="categories__link" href="shop.php?page=1&cat[]=3&"> <!--LINK THE ACCESSORIES.PHP page here to display it -->
-		Accessories
+	      <a class="categories__link" href="../../shop.php?page=1&man[]=12&man[]=13&"> <!--LINK THE xbox page here to display it -->
+		XBOX
 
 	      </a>
 	    </li>
@@ -109,7 +109,7 @@ else
 // if the customer is not signed in, do not show them this menu
 if (isset($_SESSION['customer_email'])){
 echo '<li class="categories__item">
-	      <a class="categories__link" href="../../customer/my_account.php?my_orders">
+	      <a class="categories__link" href="customer/my_account.php?my_orders">
 		My Account
 		<i class="icon-down-open-1"></i>
 	      </a>
@@ -133,15 +133,18 @@ echo '<li class="categories__item">
 		    <div class="dropdown__heading"></div>
 		    <ul class="dropdown__items">
 		      <li class="dropdown__item">
+			<a href="my_account.php?edit_account" class="dropdown__link">Edit Your Account</a>
+		      </li>
+		      <li class="dropdown__item">
 			<a href="my_account.php?change_pass" class="dropdown__link">Change Password</a>
+		      </li>
+		      <li class="dropdown__item">
+			<a href="my_account.php?delete_account" class="dropdown__link">Delete Account</a>
 		      </li>
 		    </ul>
 		  </div>
 		</div>
-
-
 	      </div>
-
 	    </li>';
 }?>
 

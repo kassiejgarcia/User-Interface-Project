@@ -1,5 +1,5 @@
 <?php
-/* This file is our homepage. It can be visited by clicking on our logo or just entering the website URL */
+
 session_start();
 
 include("includes/db.php");
@@ -9,29 +9,15 @@ include("includes/main.php");
 
 ?>
 
-<div class="wrapper">
-	<h1>
-		<b>Welcome to Hug with Mug!</b>
-	</h1>
-</div>
 
-  <!-- slide show cover images -->
+  <!-- Cover -->
   <main>
-<div class="image-container">
-<img class = "slidepic" src="/images/merch_image.png" id = "pic3"/>
-<img class = "slidepic" src="/images/matcha_tea_image.png" id = "pic2"/>
-<img class = "slidepic" src="/images/hug_w_mug_image.png" id = "pic1"/>
-</div>
-
-    <div class="wrapper">
-	    <h1>
-		Happiness in a mug :)			
-	    </h1>
-	    <p> We sell the best coffee and tea available to bring a smile on your face. Need a mug? Want a shirt related to coffee or tea? We got that too!  </p>
-	</div>
-            
-
-</div>
+    <div class="image-container">
+      <a href="shop.php"><img class = "slidepic" src="images/nintendo_showcase_index.jpeg" id = "pic3"/>
+</a>
+<a href="shop.php"><img class = "slidepic" src="/images/activision_showcase_index.png" id = "pic2"/></a>
+<a href="shop.php"><img class = "slidepic" src="/images/ea_showcase_index.jpeg" id = "pic1"/>
+</a>
     </div>
     <!-- Main -->
     <div class="wrapper">
@@ -44,9 +30,9 @@ include("includes/main.php");
     <div id="content" class="container"><!-- container Starts -->
 
     <div class="row"><!-- row Starts -->
-
-    <?php
+<?php
 /* in the functions/functions.php, run getPro() which gets 8 products to display on our home page */
+
     getPro();
 
     ?>

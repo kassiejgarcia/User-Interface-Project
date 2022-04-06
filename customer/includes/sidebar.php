@@ -12,9 +12,7 @@ $run_customer = mysqli_query($con,$get_customer);
 
 $row_customer = mysqli_fetch_array($run_customer);
 
-$customer_image = $row_customer['customer_image'];
-
-$customer_name = $row_customer['customer_name'];
+$customer_name = $row_customer['full_name'];
 
 if(!isset($_SESSION['customer_email'])){
 
@@ -23,9 +21,10 @@ if(!isset($_SESSION['customer_email'])){
 else {
 
 echo "
+
 <br>
 
-<h3 align='center' class='panel-title'> Account Settings </h3>
+<h3 align='center' class='panel-title'> Name : $customer_name </h3>
 
 ";
 
@@ -45,6 +44,13 @@ echo "
 
 </li>
 
+
+<li class="<?php if(isset($_GET['edit_account'])){ echo "active"; } ?>">
+
+<a href="my_account.php?edit_account"> <i class="fa fa-pencil"></i> Edit Account </a>
+
+</li>
+
 <li class="<?php if(isset($_GET['change_pass'])){ echo "active"; } ?>">
 
 <a href="my_account.php?change_pass"> <i class="fa fa-user"></i> Change Password </a>
@@ -57,6 +63,11 @@ echo "
 
 </li>
 
+<li class="<?php if(isset($_GET['delete_account'])){ echo "active"; } ?>">
+
+<a href="my_account.php?delete_account"> <i class="fa fa-trash-o"></i> Delete Account </a>
+
+</li>
 
 <li>
 

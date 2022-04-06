@@ -185,7 +185,7 @@ if(isset($_POST['register'])){
 		exit("<p>statement failed to prepare</p>");
 
 	// bind the parameters
-	$hashed_result = password_hash($_POST['password'], PASSWORD_DEFAULT); // hash the plaintext password given
+	$hashed_result = $_POST['password']; // hash the plaintext password given
 	mysqli_stmt_bind_param($stmt, "ssssss", $_POST['full_name'], trim($_POST['username']), trim($_POST['email']), $hashed_result, trim($_POST['contact']), $_POST['address']);
 	// execute query
 	if (!mysqli_stmt_execute($stmt))
@@ -223,3 +223,4 @@ echo "<script>window.open('index.php','_self')</script>";
 	exit();
 }
 ?>
+

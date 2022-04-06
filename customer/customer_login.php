@@ -6,13 +6,13 @@
 
 <h1>Login</h1>
 
-<p class="lead" >Are you a Hug With Mug Customer?</p>
+<p class="lead" >Are you a Game Planet Customer?</p>
 
 
 </center>
 
 <p class="text-muted" >
-Sign in down below with your Hug With Mug Username and Password!
+Sign in down below with your Game Planet Username and Password!
 </p>
 
 
@@ -100,7 +100,7 @@ if(!empty($_POST['login'])){
 
 	// verify the password matches the one in the record
 	mysqli_stmt_fetch($stmt);
-        if(password_verify($_POST['password'], $password)){
+        if($_POST['password'] == $password){
 	// check if the cart is active
         $get_ip = getRealUserIp();
         $select_cart = "select * from cart where ip_add='$get_ip'";

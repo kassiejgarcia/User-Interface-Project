@@ -1,6 +1,7 @@
 <?php
 /* This file is where we view the details of every individual product. It takes in the product url stored in the database which
 correlates to the product. If there is a match, then we will showcase all the details of the product */
+
 session_start();
 
 include("includes/db.php");
@@ -20,17 +21,18 @@ $get_product = "select * from products where product_url='$product_id'";
 $run_product = mysqli_query($con,$get_product);
 
 $check_product = mysqli_num_rows($run_product);
-// if there is no match, redirect user to the homepage
+// if there is a no match, redirect user to the homepage
 if($check_product == 0){
 
 echo "<script> window.open('index.php','_self') </script>";
 
 }
 else{
-// if there is a match
+//if there is a match
 
 
 $row_product = mysqli_fetch_array($run_product);
+
 // assign the variables of the product from the DB
 $p_cat_id = $row_product['p_cat_id']; // this is the product categorie id (tea->!matcha!)
 
@@ -50,10 +52,13 @@ $pro_img2 = $row_product['product_img2']; //image if any
 $pro_img3 = $row_product['product_img3']; //image if any
 
 $pro_label = $row_product['product_label']; // is it on Sale?
-
 $pro_psp_price = $row_product['product_psp_price']; // Sale price if given
 
-$status = $row_product['status']; //****** is it a product or a bundle?????
+$pro_features = $row_product['product_features'];
+
+$pro_video = $row_product['product_video'];
+
+$status = $row_product['status']; //**** product
 
 $pro_url = $row_product['product_url']; // this is a product identifier used to access this page
 
@@ -67,6 +72,7 @@ $product_label = "
 ";
 }
 
+
 $get_p_cat = "select * from product_categories where p_cat_id='$p_cat_id'";
 
 $run_p_cat = mysqli_query($con,$get_p_cat);
@@ -77,8 +83,11 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
 ?>
 
+
 <div id="content" ><!-- content Starts -->
 <div class="container" ><!-- container Starts -->
+
+
 
 
 
@@ -89,7 +98,6 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 <div class="col-sm-6"><!-- col-sm-6 Starts -->
 
 <div id="mainImage"><!-- mainImage Starts -->
- <!-- showcase the carousel of product images -->
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
@@ -155,8 +163,8 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 <h1 class="text-center" > <?php echo $pro_title; ?> </h1>
 
 <?php
-// add to cart functionality
 
+//add to cart functionality
 if(isset($_POST['add_cart'])){
 
 $ip_add = getRealUserIp();
@@ -165,15 +173,16 @@ $p_id = $pro_id;
 
 $product_qty = $_POST['product_qty'];
 
+
 $check_product = "select * from cart where ip_add='$ip_add' AND p_id='$p_id'";
 
 $run_check = mysqli_query($con,$check_product);
-// redirect the user back to the page
+
 if(mysqli_num_rows($run_check)>0){
 
-echo "<script>alert('Product already added to cart')</script>";
+echo "<script>alert('This Product is already added in cart')</script>";
 
-echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url','_self')</script>";
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
 else {
@@ -204,8 +213,8 @@ $product_price = $pro_price;
 $query = "insert into cart (p_id,ip_add,qty,p_price) values ('$p_id','$ip_add','$product_qty','$product_price')";
 
 $run_query = mysqli_query($db,$query);
-// refresh the homepage
-echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url','_self')</script>";
+
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
 
@@ -213,19 +222,12 @@ echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/deta
 
 
 ?>
+
 <!-- display the product form on the right -->
 <form action="" method="post" class="form-horizontal" ><!-- form-horizontal Starts -->
 
-
 <div class="form-group"><!-- form-group Starts -->
- <label class="col-md-5 control-label"> Product Description </label>
- <div id = "description">
-<?php echo "$pro_desc"; ?>
-</div>
-<label class="col-md-5 control-label"> In Stock </label>
-<div id = "description">
-<?php echo "<p>$pro_quantity</p>"; ?>
-</div>
+
 <label class="col-md-5 control-label" >Product Quantity </label>
 
 <div class="col-md-7" ><!-- col-md-7 Starts -->
@@ -237,40 +239,43 @@ echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/deta
 <option>2</option>
 <option>3</option>
 
-
 </select>
 
 </div><!-- col-md-7 Ends -->
-
-</div><!-- form-group Ends -->
+</div><!-- form group ends -->
 
 <?php
-
 // if the product is labeled as for sale, display the sale price
 if($pro_label == "Sale" or $pro_label == "sale"){
 
 echo "
+
 <p class='price'>
+
 Product Price : <del> $$pro_price </del><br>
+
 Product sale Price : $$pro_psp_price
+
 </p>
+
 ";
 
 }
 else{
 
 echo "
+
 <p class='price'>
+
 Product Price : $$pro_price
+
 </p>
+
 ";
 
 }
 
-
 ?>
-
-
 
 <p class="text-center buttons" ><!-- text-center buttons Starts -->
 
@@ -293,7 +298,7 @@ if(isset($_POST['add_wishlist'])){
 // if the user is not logged in, then they cannot add the product to a list
 if(!isset($_SESSION['customer_email'])){
 
-echo "<script>alert('Please Sign in to add product in wishlist')</script>";
+echo "<script>alert('You Must Login To Add Product In Wishlist')</script>";
 
 echo "<script>window.open('checkout.php','_self')</script>";
 
@@ -315,12 +320,12 @@ $select_wishlist = "select * from wishlist where customer_id='$customer_id' AND 
 $run_wishlist = mysqli_query($con,$select_wishlist);
 
 $check_wishlist = mysqli_num_rows($run_wishlist);
-// if the product is already within the wishlist, the user cannot add the product again
+
 if($check_wishlist == 1){
+// if the product is already within the wishlist, the user cannot add the product again
+echo "<script>alert('This Product Has Been already Added In Wishlist')</script>";
 
-echo "<script>alert('Product is already in wishlist')</script>";
-
-echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url','_self')</script>";
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
 else{
@@ -328,12 +333,12 @@ else{
 $insert_wishlist = "insert into wishlist (customer_id,product_id) values ('$customer_id','$pro_id')";
 
 $run_wishlist = mysqli_query($con,$insert_wishlist);
-// insert the product into the wishlist successfully 
+// inserts successfully 
 if($run_wishlist){
 
-echo "<script> alert('Product is successfully inserted into wishlist') </script>";
+echo "<script> alert('Product Has Inserted Into Wishlist') </script>";
 
-echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url','_self')</script>";
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
 
@@ -351,7 +356,6 @@ echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/deta
 
 </div><!-- box Ends -->
 <!-- display all the images for the product at the bottom of the product view form -->
-
 <div class="row" id="thumbs" ><!-- row Starts -->
 
 <div class="col-xs-4" ><!-- col-xs-4 Starts -->
@@ -392,13 +396,63 @@ echo "<script>window.open('http://ec2-54-172-16-142.compute-1.amazonaws.com/deta
 
 
 </div><!-- row Ends -->
-<div class =""> <!-- similar products start -->
+
+<div class="box" id="details"><!-- box Starts -->
+
+<a class="btn btn-info tab" style="margin-bottom:10px;" href="#description" data-toggle="tab"><!-- btn btn-primary tab Starts -->
+
+<?php
+
+echo "Product Description";
+
+?>
+
+</a><!-- btn btn-primary tab Ends -->
+
+<a class="btn btn-info tab" style="margin-bottom:10px;" href="#features" data-toggle="tab"><!-- btn btn-primary tab Starts -->
+
+Features
+
+</a><!-- btn btn-primary tab Ends -->
+
+<a class="btn btn-info tab" style="margin-bottom:10px;" href="#video" data-toggle="tab"><!-- btn btn-primary tab Starts -->
+
+Sounds and Videos
+
+</a><!-- btn btn-primary tab Ends -->
+
+<hr style="margin-top:0px;">
+
+<div class="tab-content"><!-- tab-content Starts -->
+
+<div id="description" class="tab-pane fade in active" style="margin-top:7px;" ><!-- description tab-pane fade in active Starts -->
+
+<?php echo $pro_desc; ?>
+
+</div><!-- description tab-pane fade in active Ends -->
+
+<div id="features" class="tab-pane fade in" style="margin-top:7px;" ><!-- features tab-pane fade in  Starts -->
+
+<?php echo $pro_features; ?>
+
+</div><!-- features tab-pane fade in  Ends -->
+
+<div id="video" class="tab-pane fade in" style="margin-top:7px;" ><!-- video tab-pane fade in Starts -->
+
+<?php echo $pro_video; ?>
+
+</div><!-- video tab-pane fade in  Ends -->
+
+
+</div><!-- tab-content Ends -->
+
+</div><!-- box Ends -->
+
 <div id="row same-height-row"><!-- row same-height-row Starts -->
 
 <div class="col-md-3 col-sm-6"><!-- col-md-3 col-sm-6 Starts -->
 
 <h3 class="text-center"> Check out these Similar Products: </h3>
-
 
 </div><!-- col-md-3 col-sm-6 Ends -->
 
@@ -419,7 +473,7 @@ $pro_price = $row_products['product_price'];
 $pro_img1 = $row_products['product_img1'];
 
 $pro_label = $row_products['product_label'];
-/*********** manufacture functionality 
+
 $manufacturer_id = $row_products['manufacturer_id'];
 
 $get_manufacturer = "select * from manufacturers where manufacturer_id='$manufacturer_id'";
@@ -429,7 +483,7 @@ $run_manufacturer = mysqli_query($db,$get_manufacturer);
 $row_manufacturer = mysqli_fetch_array($run_manufacturer);
 
 $manufacturer_name = $row_manufacturer['manufacturer_title'];
- */
+
 $pro_psp_price = $row_products['product_psp_price'];
 
 $pro_url = $row_products['product_url'];
@@ -452,45 +506,75 @@ $product_price = "$$pro_price";
 
 
 if($pro_label == "NULL"){
+
+
 }
 else{
 
 $product_label = "
+
 <a class='label sale' href='#' style='color:black;'>
+
 <div class='thelabel'>$pro_label</div>
+
 <div class='label-background'> </div>
+
 </a>
+
 ";
 
 }
 
 
 echo "
+
 <div class='col-md-3 col-sm-6 center-responsive' >
+
 <div class='product' >
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >
-<img src='admin_area/product_images/$pro_img1' class='similar-product' >
+
+<a href='details.php?pro_id=$pro_url' >
+
+<img src='admin_area/product_images/$pro_img1' class='img-responsive' >
+
 </a>
+
 <div class='text' >
-<!-- ************************<center>
+
+<center>
+
 <p class='btn btn-warning'> $manufacturer_name </p>
-</center> -->
+
+</center>
+
 <hr>
-<h3><a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' >$pro_title</a></h3>
+
+<h3><a href='details.php?pro_id=$pro_url' >$pro_title</a></h3>
+
 <p class='price' > $product_price $product_psp_price </p>
+
 <p class='buttons' >
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-default' >View Details</a>
-<a href='http://ec2-54-172-16-142.compute-1.amazonaws.com/details.php?pro_id=$pro_url' class='btn btn-danger'>
+
+<a href='details.php?pro_id=$pro_url' class='btn btn-default' >View Details</a>
+
+<a href='details.php?pro_id=$pro_url' class='btn btn-danger'>
+
 <i class='fa fa-shopping-cart'></i> Add To Cart
+
 </a>
+
+
 </p>
+
 </div>";
 if($pro_label != NULL){
-	echo "$product_label";
+echo "$product_label";
 }
+
 echo"
 </div>
+
 </div>
+
 ";
 
 
@@ -498,15 +582,10 @@ echo"
 
 
 ?>
-
-
-
-
 </div><!-- row same-height-row Ends -->
 
 </div><!-- col-md-12 Ends -->
 
-</div> <!-- similar-products ends -->
 </div><!-- container Ends -->
 </div><!-- content Ends -->
 
