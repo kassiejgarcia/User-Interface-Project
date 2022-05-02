@@ -21,7 +21,7 @@ include("includes/main.php");
     </div>
     <!-- Main -->
     <div class="wrapper">
-            <h1>BESTSELLERS<h1>
+            <h1>BESTSELLERS!<h1>
             
       </div>
 
