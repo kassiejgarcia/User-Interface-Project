@@ -1,3 +1,50 @@
+
+<head>
+<style>
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #630460 !important;
+}
+
+/*
+* {
+   box-sizing: border-box;
+   }
+
+//Style the search field
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+//Style the submit button 
+form.search button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #630460;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; // Prevent double borders
+  cursor: pointer;
+}
+
+form.search button:hover {
+  background: #0b7dda;
+}
+
+// Clear floats 
+form.search::after {
+  content: "";
+  clear: both;
+  display: table;
+}*/
+</style>
 </head>
 
 <body>
@@ -70,7 +117,7 @@ else
 
 	<div class="logo">
 	  <a class="logo__link" href="index.php">
-	    <img class="logo__img" src="images/game_logo.png" alt="Game Planet" width="450" height="23">
+	    <img class="logo__img" src="images/game_logo.png" alt="Game Planet Logo" width="450" height="23">
 	  </a>
 	</div>
 
@@ -104,6 +151,14 @@ else
 	      </a>
 	    </li>
 
+	<!--<form class="search"  action="search.php">
+  		<input type="text" placeholder="Search.." name="search">
+		<button type="submit"><i class="fa fa-search"></i></button>
+	</form>-->
+	<!--<button type="button" class="btn btn-primary">Search</button>-->
+        <a href="http://ec2-54-165-131-208.compute-1.amazonaws.com/search.php" class="btn btn-primary" role="button" aria-disabled="true">Search</a>
+
+
 <?php
 // if the customer has signed in, allow them to view the my account menu
 // if the customer is not signed in, do not show them this menu
@@ -119,13 +174,13 @@ echo '<li class="categories__item">
 		    <div class="dropdown__heading">Account Settings</div>
 		    <ul class="dropdown__items">
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">My Wishlist</a>
+			<a href="/customer/my_account.php?my_wishlist" class="dropdown__link">My Wishlist</a>
 		      </li>
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">My Orders</a>
+			<a href="/customer/my_account.php?my_orders" class="dropdown__link">My Orders</a>
 		      </li>
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">View Shopping Cart</a>
+			<a href="cart.php" class="dropdown__link">View Shopping Cart</a>
 		      </li>
 		    </ul>
 		  </div>
@@ -133,13 +188,13 @@ echo '<li class="categories__item">
 		    <div class="dropdown__heading"></div>
 		    <ul class="dropdown__items">
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">Edit Your Account</a>
+			<a href="/customer/my_account.php?edit_account" class="dropdown__link">Edit Your Account</a>
 		      </li>
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">Change Password</a>
+			<a href="/customer/my_account.php?change_pass" class="dropdown__link">Change Password</a>
 		      </li>
 		      <li class="dropdown__item">
-			<a href="#" class="dropdown__link">Delete Account</a>
+			<a href="/customer/my_account.php?delete_account" class="dropdown__link">Delete Account</a>
 		      </li>
 		    </ul>
 		  </div>

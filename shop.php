@@ -13,7 +13,7 @@ include("includes/main.php");
     <!-- HERO -->
     <div class="nero">
       <div class="nero__heading">
-        Shop All Games
+        Shop Now
       </div>
       <p class="nero__text">
       </p>

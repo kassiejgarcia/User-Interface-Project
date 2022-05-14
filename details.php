@@ -113,19 +113,19 @@ $p_cat_title = $row_p_cat['p_cat_title'];
 
 <div class="item active">
 <center>
-<img src="admin_area/product_images/<?php echo $pro_img1; ?>" class="img-responsive">
+<img src="admin_area/product_images/<?php echo $pro_img1; ?>" alt = "<?php echo $pro_title; ?> image 1" class="img-responsive">
 </center>
 </div>
 
 <div class="item">
 <center>
-<img src="admin_area/product_images/<?php echo $pro_img2; ?>" class="img-responsive">
+<img src="admin_area/product_images/<?php echo $pro_img2; ?>" alt = "<?php echo $pro_title; ?> image 2" class="img-responsive">
 </center>
 </div>
 
 <div class="item">
 <center>
-<img src="admin_area/product_images/<?php echo $pro_img3; ?>" class="img-responsive">
+<img src="admin_area/product_images/<?php echo $pro_img3; ?>" alt = "<?php echo $pro_title; ?> image 3" class="img-responsive">
 </center>
 </div>
 
@@ -185,6 +185,11 @@ echo "<script>alert('This Product is already added in cart')</script>";
 echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
+else if($product_qty == "Select quantity"){
+echo "<script>alert('Please select a quantity for the product')</script>";
+
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+}
 else {
 
 $get_price = "select * from products where product_id='$p_id'";
@@ -213,7 +218,7 @@ $product_price = $pro_price;
 $query = "insert into cart (p_id,ip_add,qty,p_price) values ('$p_id','$ip_add','$product_qty','$product_price')";
 
 $run_query = mysqli_query($db,$query);
-
+echo "<script>alert('Product was Successfully Added to the Cart!')</script>";
 echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 
 }
@@ -221,7 +226,66 @@ echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
 }
 
 
+//buy now functionality
+if(isset($_POST['buy_now'])){
+
+$ip_add = getRealUserIp();
+
+$p_id = $pro_id;
+
+$product_qty = $_POST['product_qty'];
+
+
+$check_product = "select * from cart where ip_add='$ip_add'";
+
+$run_check = mysqli_query($con,$check_product);
+
+if(mysqli_num_rows($run_check)>0){
+
+echo "<script>alert('You already have other items in your cart.')</script>";
+
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+
+}
+else if($product_qty == "Select quantity"){
+echo "<script>alert('Please select a quantity for the product')</script>";
+
+echo "<script>window.open('details.php?pro_id=$pro_url','_self')</script>";
+}
+else {
+
+$get_price = "select * from products where product_id='$p_id'";
+$run_price = mysqli_query($con,$get_price);
+
+$row_price = mysqli_fetch_array($run_price);
+
+$pro_price = $row_price['product_price'];
+
+$pro_psp_price = $row_price['product_psp_price'];
+
+$pro_label = $row_price['product_label'];
+
+if($pro_label == "Sale" or $pro_label == "sale"){
+
+$product_price = $pro_psp_price;
+
+}
+else{
+
+$product_price = $pro_price;
+
+}
+
+$query = "insert into cart (p_id,ip_add,qty,p_price) values ('$p_id','$ip_add','$product_qty','$product_price')";
+
+$run_query = mysqli_query($db,$query);
+echo "<script>alert('Product was Successfully Added to the Cart!')</script>";
+echo "<script>window.open('checkout.php','_self')</script>";
+
+}
+}
 ?>
+
 
 <!-- display the product form on the right -->
 <form action="" method="post" class="form-horizontal" ><!-- form-horizontal Starts -->
@@ -278,6 +342,12 @@ Product Price : $$pro_price
 ?>
 
 <p class="text-center buttons" ><!-- text-center buttons Starts -->
+
+<button class="btn btn-default" type="submit" name="buy_now">
+
+<i class="fa fa-shopping-cart" ></i> Buy Now
+
+</button>
 
 <button class="btn btn-danger" type="submit" name="add_cart">
 
@@ -566,7 +636,7 @@ echo "
 </p>
 
 </div>";
-if($pro_label != NULL){
+if($pro_label == "Sale"){
 echo "$product_label";
 }
 

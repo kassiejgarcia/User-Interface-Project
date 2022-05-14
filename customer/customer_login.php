@@ -4,8 +4,10 @@
 
 <center>
 
+<div>
 <h1>Login</h1>
-
+</div>
+	
 <p class="lead" >Are you a Game Planet Customer?</p>
 
 
@@ -22,19 +24,19 @@ Sign in down below with your Game Planet Username and Password!
 
 <form action="checkout.php" method="post" ><!--form Starts -->
 
-<div class="form-group" ><!-- form-group Starts -->
+<div class="form-group input-container" ><!-- form-group Starts -->
 
 <label>Username</label>
 
-<input type="text" class="form-control" name="username" required >
+<input placeholder="Username" type="text" class="form-control username" name="username" required >
 
 </div><!-- form-group Ends -->
 
-<div class="form-group" ><!-- form-group Starts -->
+<div class="form-group input-container" ><!-- form-group Starts -->
 
 <label>Password</label>
 
-<input type="password" class="form-control" name="password" required >
+<input placeholder="Password" type="password" class="form-control password" name="password" required >
 
 <h4 align="center">
 
@@ -44,7 +46,7 @@ Sign in down below with your Game Planet Username and Password!
 
 <div class="text-center" ><!-- text-center Starts -->
 
-<button name="login" value="Login" class="btn btn-primary" >
+<button name="login" value="Login" class="btn btn-primary signin-button" >
 
 <i class="fa fa-sign-in" ></i> Log in
 

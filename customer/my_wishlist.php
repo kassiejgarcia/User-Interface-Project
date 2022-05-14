@@ -81,7 +81,7 @@ $i++;
 
 &nbsp;&nbsp;&nbsp; 
 
-<a href="../<?php echo $product_url; ?>">
+<a href="../details.php?pro_id=<?php echo $product_url; ?>">
 
 <?php echo $product_title; ?>
 

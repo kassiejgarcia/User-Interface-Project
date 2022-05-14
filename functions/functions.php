@@ -158,7 +158,7 @@ echo "
 
 <a href='details.php?pro_id=$pro_url' >
 
-<img src='admin_area/product_images/$pro_img1' class='img-responsive' >
+<img src='admin_area/product_images/$pro_img1' alt = '$pro_title main image' class='img-responsive' >
 
 </a>
 
@@ -365,7 +365,7 @@ echo "
 
 <a href='details.php?pro_id=$pro_url' >
 
-<img src='admin_area/product_images/$pro_img1' class='img-responsive' >
+<img src='admin_area/product_images/$pro_img1' alt = '$pro_title main image' class='img-responsive' >
 
 </a>
 
@@ -525,7 +525,6 @@ echo "' >".'Last Page'."</a></li>";
 }
 
 /// getPaginator Function Ends ///
-
 
 
 ?>

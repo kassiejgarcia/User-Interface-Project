@@ -53,7 +53,7 @@ include("includes/main.php");
 
 <label> Enter your full name:</label>
 
-<input type="text" class="form-control" name="full_name" required>
+<input placeholder="First Last" type="text" class="form-control" name="full_name" required>
 
 </div><!-- form-group Ends -->
 
@@ -61,14 +61,14 @@ include("includes/main.php");
 
 <label> Enter a Unique username:</label>
 
-<input type="text" class="form-control" name="username" required>
+<input placeholder="Username" type="text" class="form-control" name="username" required>
 
 </div><!-- form-group Ends -->
 <div class="form-group"><!-- form-group Starts -->
 
 <label> Enter your email address:</label>
 
-<input type="text" class="form-control" name="email" required>
+<input placeholder="email@example.com" type="text" class="form-control" name="email" required>
 
 </div><!-- form-group Ends -->
 
@@ -76,7 +76,7 @@ include("includes/main.php");
 
 <label> Enter a Unique password:</label>
 
-<input type="password" class="form-control" id="pass" name="password" required>
+<input placeholder="Password" type="password" class="form-control" id="pass" name="password" required>
 </div><!-- form-group Ends -->
 
 
@@ -84,14 +84,14 @@ include("includes/main.php");
 
 <label> Confirm Password:</label>
 
-<input type="password" class="form-control confirm" id="con_pass" required>
+<input placeholder="Password" type="password" class="form-control confirm" id="con_pass" required>
 
 </div><!-- form-group Ends -->
 <div class="form-group"><!-- form-group Starts -->
 
 <label> Customer Contact </label>
 
-<input type="text" class="form-control" name="contact" required>
+<input placeholder="(xxx)xxx-xxxx" type="text" class="form-control" name="contact" required>
 
 </div><!-- form-group Ends -->
 
@@ -99,7 +99,7 @@ include("includes/main.php");
 
 <label> Customer Address </label>
 
-<input type="text" class="form-control" name="address" required>
+<input placeholder="Stree Address" type="text" class="form-control" name="address" required>
 
 
 <!--

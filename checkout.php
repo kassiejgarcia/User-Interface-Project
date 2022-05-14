@@ -10,6 +10,7 @@ include("includes/main.php");
 ?>
 
 <main>
+	<link rel="stylesheet" href="customer/styles/styles/style.css">
   </main>
 
 

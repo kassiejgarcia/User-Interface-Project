@@ -12,13 +12,11 @@ include("includes/main.php");
 
   <!-- Cover -->
   <main>
-    <div class="image-container">
-      <a href="shop.php"><img class = "slidepic" src="images/nintendo_showcase_index.jpeg" id = "pic3"/>
-</a>
-<a href="shop.php"><img class = "slidepic" src="/images/activision_showcase_index.png" id = "pic2"/></a>
-<a href="shop.php"><img class = "slidepic" src="/images/ea_showcase_index.jpeg" id = "pic1"/>
-</a>
-    </div>
+    <div class="image-container"> 
+<img class = "slidepic" src="images/nintendo_showcase_index.jpeg" alt = "image showcasing nintendo products" id = "pic3"/>
+<img class = "slidepic" src="/images/activision_showcase_index.png" alt = "image showcasing activision products" id = "pic2"/>
+<img class = "slidepic" src="/images/ea_showcase_index.jpeg" alt = "image showcasing E.A. Games products" id = "pic1"/>
+   </div>  
     <!-- Main -->
     <div class="wrapper">
             <h1>BESTSELLERS!<h1>
